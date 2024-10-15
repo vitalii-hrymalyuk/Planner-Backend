@@ -11,7 +11,7 @@ export class UserService {
   constructor(
     private prisma: PrismaService,
     private taskService: TaskService,
-  ) { }
+  ) {}
 
   getById(id: string) {
     return this.prisma.user.findUnique({
@@ -40,8 +40,14 @@ export class UserService {
     const todayStart = startOfDay(new Date());
     const weekStart = startOfDay(subDays(new Date(), 7));
 
-    const todayTasks = await this.taskService.getTasksByDate(id, todayStart.toISOString())
-    const weekTasks = await this.taskService.getTasksByDate(id, weekStart.toISOString())
+    const todayTasks = await this.taskService.getTasksByDate(
+      id,
+      todayStart.toISOString(),
+    );
+    const weekTasks = await this.taskService.getTasksByDate(
+      id,
+      weekStart.toISOString(),
+    );
 
     const { password, ...rest } = profile;
 
@@ -52,8 +58,8 @@ export class UserService {
         { label: 'Completed tasks', value: completedTasks },
         { label: 'Today tasks', value: todayTasks },
         { label: 'Week tasks', value: weekTasks },
-      ]
-    }
+      ],
+    };
   }
 
   async create(dto: AuthDto) {
@@ -82,7 +88,18 @@ export class UserService {
       select: {
         name: true,
         email: true,
-      }
+      },
+    });
+  }
+
+  async getUserAndIntervalsCount(userId: string) {
+    return await this.prisma.user.findUnique({
+      where: {
+        id: userId,
+      },
+      select: {
+        intervalsCount: true,
+      },
     });
   }
 }

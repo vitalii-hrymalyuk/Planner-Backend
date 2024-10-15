@@ -4,65 +4,64 @@ import { TaskDto } from './dto/task.dto';
 
 @Injectable()
 export class TaskService {
+  constructor(private prisma: PrismaService) {}
 
-	constructor(private prisma: PrismaService) { }
+  async getAll(userId: string) {
+    return this.prisma.task.findMany({
+      where: {
+        userId,
+      },
+    });
+  }
 
-	async getAll(userId: string) {
-		return this.prisma.task.findMany({
-			where: {
-				userId
-			}
-		})
-	}
+  async create(dto: TaskDto, userId: string) {
+    return this.prisma.task.create({
+      data: {
+        ...dto,
+        user: {
+          connect: {
+            id: userId,
+          },
+        },
+      },
+    });
+  }
 
-	async create(dto: TaskDto, userId: string) {
-		return this.prisma.task.create({
-			data: {
-				...dto,
-				user: {
-					connect: {
-						id: userId
-					}
-				}
-			}
-		});
-	}
+  async update(dto: Partial<TaskDto>, taskId: string, userId: string) {
+    return this.prisma.task.update({
+      where: {
+        userId,
+        id: taskId,
+      },
+      data: dto,
+    });
+  }
 
-	async update(dto: Partial<TaskDto>, taskId: string, userId: string) {
-		return this.prisma.task.update({
-			where: {
-				userId,
-				id: taskId
-			},
-			data: dto
-		})
-	}
+  async delete(taskId: string) {
+    return this.prisma.task.delete({
+      where: {
+        id: taskId,
+      },
+    });
+  }
 
-	async delete(taskId: string) {
-		return this.prisma.task.delete({
-			where: {
-				id: taskId
-			}
-		})
-	}
+  async getCompletedTasks(id: string) {
+    return await this.prisma.task.count({
+      where: {
+        userId: id,
+        isCompleted: true,
+      },
+    });
+  }
 
-	async getCompletedTasks(id: string) {
-		return await this.prisma.task.count({
-			where: {
-				userId: id,
-				isCompleted: true
-			}
-		})
-	}
-
-	async getTasksByDate(id: string, gte: string) {
-		return await this.prisma.task.count({
-			where: {
-				userId: id,
-				createdAt: {
-					gte
-				}
-			}
-		})
-	}
+  async getTasksByDate(id: string, gte: string) {
+    return await this.prisma.task.count({
+      where: {
+        userId: id,
+        createdAt: {
+          gte,
+        },
+      },
+    });
+  }
 }

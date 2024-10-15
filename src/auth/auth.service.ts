@@ -18,7 +18,7 @@ export class AuthService {
   constructor(
     private jwtService: JwtService,
     private userService: UserService,
-  ) { }
+  ) {}
 
   async login(dto: AuthDto) {
     const { password, ...user } = await this.validateUser(dto);
@@ -45,16 +45,16 @@ export class AuthService {
 
   async getNewTokens(refreshToken: string) {
     const result = await this.jwtService.verifyAsync(refreshToken);
-    if (!result) throw new UnauthorizedException('Invalid refresh token')
+    if (!result) throw new UnauthorizedException('Invalid refresh token');
 
     const { password, ...user } = await this.userService.getById(result.id);
 
-    const tokens = this.issueTokens(user.id)
+    const tokens = this.issueTokens(user.id);
 
     return {
       user,
-      ...tokens
-    }
+      ...tokens,
+    };
   }
 
   private issueTokens(userId: string) {
@@ -106,6 +106,6 @@ export class AuthService {
       expires: new Date(0),
       secure: true, // true in production
       sameSite: 'none', // lax if production
-    })
+    });
   }
 }
