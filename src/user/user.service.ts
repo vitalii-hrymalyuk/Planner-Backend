@@ -36,7 +36,7 @@ export class UserService {
     const profile = await this.getById(id);
 
     const totalTasks = profile.tasks.length;
-    const completedTasks = this.taskService.getCompletedTasks(id);
+    const completedTasks = await this.taskService.getCompletedTasks(id);
     const todayStart = startOfDay(new Date());
     const weekStart = startOfDay(subDays(new Date(), 7));
 
@@ -48,7 +48,7 @@ export class UserService {
     return {
       user: rest,
       statistics: [
-        { label: 'Total', value: todayTasks },
+        { label: 'Total', value: totalTasks },
         { label: 'Completed tasks', value: completedTasks },
         { label: 'Today tasks', value: todayTasks },
         { label: 'Week tasks', value: weekTasks },
