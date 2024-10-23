@@ -1,73 +1,149 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+## Planner Backend
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+A backend service for a full-stack task management application. This backend is built using NestJS, TypeScript, and Prisma ORM, with PostgreSQL as the database. Authentication is handled via JSON Web Tokens (JWT).
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+---
 
-## Description
+## Features
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- **User Authentication**
+  - Secure login
+  - Registration using JWT
+- **Task Management**
+  - Create tasks
+  - Read tasks
+  - Update tasks
+  - Delete tasks
+
+---
+
+## Technology Stack
+
+- **[NestJS](https://docs.nestjs.com/)**: A progressive Node.js framework for building efficient server-side applications.
+
+-- **[TypeScript](https://www.typescriptlang.org/docs/)**: A strongly typed programming language that builds on JavaScript.
+
+- **[Prisma](https://www.prisma.io/docs/getting-started)**: Next-generation ORM for Node.js and TypeScript.
+
+- **[PostgreSQL](https://www.postgresql.org/docs/)**: An advanced open-source relational database.
+
+-- **[NestJS JWT](https://docs.nestjs.com/security/authentication)**: An open standard for secure data transmission.
+
+---
+
+## ORM
+
+Prisma is used as the ORM (Object-Relational Mapping) technology for database querying.
+
+In conjunction with the VS Code extension, it allows you to conveniently compose models, generate a database object, and provides a convenient API for working with the database.
+
+Prisma also provides a handy Prisma Studio (npx prisma studio) that allows direct interaction with the database and supports all CRUD operations.
+
+---
+
+## Database
+
+A PostgreSQL database is used to store all the application information.
+
+--
+
+## Prerequisites
+
+Before you begin, ensure you have the following installed:
+
+- Node.js (v14 or higher)
+- npm or yarn
+- PostgreSQL (v12 or higher)
+
+---
 
 ## Installation
 
-```bash
-$ npm install
-```
-
-## Running the app
+1. Clone the repository
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+   git clone https://github.com/vitalii-hrymalyuk/planner-backend.git
 ```
 
-## Test
+2. Navigate to the project directory
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+   cd planner-backend
 ```
 
-## Support
+3.
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```bash
+   	# Using npm
+   	npm install
 
-## Stay in touch
+   	# Or using yarn
+   	yarn install
+```
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+---
+
+## Configuration
+
+1. Create an .env file in root folder
+2. Set up environment variables by adding the following to your `.env` file:
+   ```env
+   DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DATABASE"
+   JWT_SECRET="your_jwt_secret"
+   ```
+
+---
+
+## Database Migration
+
+1. Generate Prisma Client
+
+```bash
+    npx prisma generate
+```
+
+2. Run migrations
+
+```bash
+   npx prisma migrate dev --name init
+```
+
+---
+
+## Running the Application
+
+1. Start the development server
+
+```bash
+# Using npm
+npm run start:dev
+
+# Or using yarn
+yarn start:dev
+
+```
+
+2. Access the application
+
+The server will be running at http://localhost:4200.
+
+---
+
+## Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
+
+---
 
 ## License
 
-Nest is [MIT licensed](LICENSE).
+This project is licensed under the MIT License.
+
+---
+
+## Contact Information
+
+- **Author**: Vitalii Hrymalyuk
+- **Email**: [vitalii.hrymalyuk@gmail.com](mailto:vitalii.hrymalyuk@gmail.com)
+
+Feel free to reach out if you have any questions or need assistance setting up the project.
