@@ -71,7 +71,7 @@ Before you begin, ensure you have the following installed:
    cd planner-backend
 ```
 
-3.
+3. Install dependencies:
 
 ```bash
    	# Using npm
