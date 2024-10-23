@@ -21,13 +21,13 @@ A backend service for a full-stack task management application. This backend is 
 
 - **[NestJS](https://docs.nestjs.com/)**: A progressive Node.js framework for building efficient server-side applications.
 
--- **[TypeScript](https://www.typescriptlang.org/docs/)**: A strongly typed programming language that builds on JavaScript.
+- **[TypeScript](https://www.typescriptlang.org/docs/)**: A strongly typed programming language that builds on JavaScript.
 
 - **[Prisma](https://www.prisma.io/docs/getting-started)**: Next-generation ORM for Node.js and TypeScript.
 
 - **[PostgreSQL](https://www.postgresql.org/docs/)**: An advanced open-source relational database.
 
--- **[NestJS JWT](https://docs.nestjs.com/security/authentication)**: An open standard for secure data transmission.
+- **[NestJS JWT](https://docs.nestjs.com/security/authentication)**: An open standard for secure data transmission.
 
 ---
 
@@ -45,7 +45,7 @@ Prisma also provides a handy Prisma Studio (npx prisma studio) that allows direc
 
 A PostgreSQL database is used to store all the application information.
 
---
+---
 
 ## Prerequisites
 
